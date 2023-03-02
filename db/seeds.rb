@@ -7,3 +7,4 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 %w[house apartment land].each { |name| PropertyType.find_or_create_by(name:) }
+%w[Warszawa Bielsko-Biała Katowice].each { |name| City.find_or_create_by(name:) }
