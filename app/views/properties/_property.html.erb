@@ -1,6 +1,11 @@
 <div id="<%= dom_id property %>">
   <p class="my-5">
     <strong class="block font-medium mb-1">Title:</strong>
+    <%= image_tag(property.image, alt: "Property #{property.title} image", style: 'height: 200px;', class: 'card-img-top img-fluid img-thumbnail') %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Title:</strong>
     <%= property.title %>
   </p>
 
