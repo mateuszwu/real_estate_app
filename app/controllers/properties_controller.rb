@@ -1,10 +1,11 @@
 class PropertiesController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
   before_action :set_property, only: %i[show edit update destroy]
+  before_action :check_property_owner, only: %i[edit update destroy]
 
   # GET /properties or /properties.json
   def index
-    @properties = Property.all
+    @properties = current_user.properties
   end
 
   # GET /properties/1 or /properties/1.json
@@ -20,7 +21,7 @@ class PropertiesController < ApplicationController
 
   # POST /properties or /properties.json
   def create
-    @property = Property.new(property_params)
+    @property = current_user.properties.build(property_params)
 
     if @property.save
       redirect_to property_url(@property), notice: 'Property was successfully created.'
@@ -55,5 +56,11 @@ class PropertiesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def property_params
     params.require(:property).permit(:city_id, :title, :description, :price, :property_type_id, :image)
+  end
+
+  def check_property_owner
+    return if @property.user != current_user
+
+    redirect_to root_path, alert: 'You are not authorized to modify this property.'
   end
 end

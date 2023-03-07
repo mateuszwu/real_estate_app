@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_07_090014) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_07_112824) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -53,8 +53,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_090014) do
     t.datetime "updated_at", null: false
     t.integer "property_type_id", null: false
     t.integer "city_id", null: false
+    t.integer "user_id", null: false
     t.index ["city_id"], name: "index_properties_on_city_id"
     t.index ["property_type_id"], name: "index_properties_on_property_type_id"
+    t.index ["user_id"], name: "index_properties_on_user_id"
   end
 
   create_table "property_types", force: :cascade do |t|
@@ -81,4 +83,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_090014) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "properties", "cities"
   add_foreign_key "properties", "property_types"
+  add_foreign_key "properties", "users"
 end
