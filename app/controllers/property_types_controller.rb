@@ -1,5 +1,6 @@
 class PropertyTypesController < ApplicationController
   before_action :set_property_type, only: %i[show edit update destroy]
+  before_action :verify_admin_role
 
   # GET /property_types or /property_types.json
   def index
