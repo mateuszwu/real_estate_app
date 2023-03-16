@@ -1,5 +1,5 @@
 <div class="w-full">
-  <div id="properties" class="min-w-full">
-    <%= render @properties %>
+  <div id="properties" class="min-w-full flex flex-wrap gap-2 justify-center">
+    <%= render partial: 'home/property', collection: @properties %>
   </div>
 </div>

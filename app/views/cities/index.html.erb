@@ -1,10 +1,36 @@
 <div class="w-full">
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Cities</h1>
-    <%= link_to 'New city', new_city_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to 'New city', new_city_path, class: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" %>
   </div>
+  <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
 
-  <div id="cities" class="min-w-full">
-    <%= render @cities %>
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-3">ID</th>
+          <th scope="col" class="px-6 py-3">Name</th>
+          <th scope="col" class="px-6 py-3">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @cities.each do |city| %>
+        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+          <th scope="row" class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <%= city.id %>
+          </th>
+          <td class="px-6 py-3">
+            <%= city.name %>
+          </td>
+          <td class="px-6 py-3">
+            <%= link_to "Show", city, class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+            |
+            <%= link_to 'Edit', edit_city_path(city), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
