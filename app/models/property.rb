@@ -4,5 +4,5 @@ class Property < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-  validates :city_id, :property_type_id, presence: true
+  validates :city_id, :description, :price, :property_type_id, :title, presence: true
 end
